@@ -58,6 +58,34 @@ export class BsNav extends LitElement {
                     --dropdown-menu-border-top-right-radius: 0;
                 }
                 
+                :host([tabs-left]) {
+                    -ms-flex-direction: column !important;
+                    flex-direction: column !important;
+                          
+                    margin-right: var(--bs-nav-margin-right);
+                    margin-bottom: var(--bs-nav-margin-bottom);
+                    margin-left: var(--bs-nav-margin-left);
+                    border-bottom: var(--bs-nav-border-bottom, 1px solid #dee2e6);
+                    
+                    --nav-item-margin-bottom: 1px;
+                    --nav-link-background-color: #fff;
+                    --nav-link-border: 1px solid transparent;
+                    --nav-link-active-color: #495057;
+                    --nav-link-active-border-top-left-radius: 0.25rem;
+                    --nav-link-active-border-bottom-left-radius: 0.25rem;
+                    --nav-link-active-border-color: #dee2e6 #dee2e6 #dee2e6;
+
+                    --dropdown-nav-link-hover-color: #495057;
+                    --dropdown-nav-link-padding-bottom: 0.6rem;
+                    --dropdown-nav-link-active-color: #495057;
+                    --dropdown-nav-link-active-hover-color: #495057;
+                    --dropdown-nav-link-active-focus-color: #495057;
+
+                    --dropdown-menu-down-margin-top: 1px;
+                    --dropdown-menu-border-top-left-radius: 0;
+                    --dropdown-menu-border-bottom-left-radius: 0;
+                }
+                
                 :host([pills]) {
                     
                     margin-right: var(--bs-nav-margin-right);

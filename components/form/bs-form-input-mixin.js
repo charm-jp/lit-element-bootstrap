@@ -1,6 +1,6 @@
 
 const BsFormInputMixin = (superClass) => class extends superClass {
-    
+
     static get properties() {
         return {
             name: String,
@@ -26,7 +26,7 @@ const BsFormInputMixin = (superClass) => class extends superClass {
             browserBadInputValueMsg: {type: String, attribute: 'browser-bad-input-value-msg'}
         };
     }
-    
+
     constructor() {
         super();
         this.name = '';
@@ -50,60 +50,60 @@ const BsFormInputMixin = (superClass) => class extends superClass {
         this.browserStepMismatchMsg = '';
         this.browserBadInputValueMsg = '';
     }
-    
+
     firstUpdated() {
         const inputElement = this.shadowRoot.querySelector('input');
         inputElement.addEventListener('keyup', () => this._handleKeyUp());
     }
-    
+
     _handleKeyUp() {
-        
+
         // if element has been called to be validated before
         // both valid and invalid start out as false
         if(this.valid || this.invalid) {
             this.validate();
         }
     }
-    
+
     isDisabled() {
         return this.disabled;
     }
-    
+
     setFocus() {
         const inputElement = this.shadowRoot.querySelector('input');
         inputElement.focus();
     }
-    
+
     getInputName() {
         return this.name;
     }
-    
+
     isValidatable() {
         return !this.skipValidation;
     }
-    
+
     validate() {
-        
+
         if(this.skipValidation) {
             return;
         }
-        
+
         const inputElement = this.shadowRoot.querySelector('input');
-        
+
         const validityState = inputElement.validity;
-        
+
         if(this.browserValidation) {
             this._executeBrowserValidation(inputElement, validityState);
             return;
         }
-        
+
         this._executeCustomValidation(validityState);
-        
+
         return validityState.valid;
     }
-    
+
     _executeCustomValidation(validityState) {
-        
+
         if(validityState.valid) {
             this.valid = true;
             this.invalid = false;
@@ -111,64 +111,64 @@ const BsFormInputMixin = (superClass) => class extends superClass {
             this.valid = false;
             this.invalid = true;
         }
-        
+
         const formInputValidationEvent = new CustomEvent('bs-form-input-validation', {
-            bubbles: true, 
+            bubbles: true,
             composed: true,
             detail: {
                 validityState: validityState
             }
         });
-            
+
         this.dispatchEvent(formInputValidationEvent);
     }
-    
+
     _executeBrowserValidation(inputElement, validityState) {
-        
+
         // has user specified custom message
         const customValidationMessage = this._getCustomValidationMessage(validityState);
-        
+
         if(customValidationMessage) {
             inputElement.setCustomValidity(customValidationMessage);
         }
 
         inputElement.reportValidity();
     }
-    
+
     _getCustomValidationMessage(validityState) {
-        
+
         if(validityState.valueMissing) {
             return this.browserMissingValueMsg;
         }
-        
+
         if(validityState.typeMismatch) {
             return this.browserMismatchValueMsg;
         }
-        
+
         if(validityState.patternMismatch) {
             return this.browserPatternValueMsg;
         }
-        
+
         if(validityState.tooLong) {
             return this.browserTooLongValueMsg;
         }
-        
+
         if(validityState.tooShort) {
             return this.browserTooShortValueMsg;
         }
-        
+
         if(validityState.rangeUnderflow) {
             return this.browserRangeUnderflowMsg;
         }
-        
+
         if(validityState.rangeOverflow) {
             return this.browserRangeOverflowMsg;
         }
-        
+
         if(validityState.stepMismatch) {
             return this.browserStepMismatchMsg;
         }
-        
+
         if(validityState.badInput) {
             return this.browserBadInputValueMsg;
         }

@@ -23,7 +23,7 @@ export class BsDropdownItemLink extends BsDropdownItemMixin(LitElement) {
 
     render() {
         return html`           
-            <a href="${this.href}" target="${this.target}">
+            <a class="dropdown-item" style="isolation: isolate;" href="${this.href}" target="${this.target}">
                 <slot></slot>
             </a>
         `;

@@ -5,17 +5,16 @@ import { BsDropdownItemCss } from './bs-dropdown-item-css';
 import { BsContentRebootCss } from '../../content';
 
 export class BsDropdownItemButton extends BsDropdownItemMixin(LitElement) {
-    
+
     static get styles() {
         return [
             BsContentRebootCss,
             BsDropdownItemCss
         ];
     }
-    
+
     render() {
-        return html`
-            <button class="dropdown-item" type="button">${this.title}</button>
+        return html`<button class="dropdown-item" type="button"><slot></slot></button>
         `;
     }
 };

@@ -7,7 +7,7 @@ import { BsFormControlSizeCss } from './css/bs-form-control-size-css';
 import { BsContentRebootCss } from '../../content';
 
 export class BsFormInput extends BsFormInputMixin(LitElement) {
-    
+
     static get styles() {
         return [
             BsContentRebootCss,
@@ -15,7 +15,7 @@ export class BsFormInput extends BsFormInputMixin(LitElement) {
             BsFormControlSizeCss
         ];
     }
-    
+
     render() {
         return html`
             <input 
@@ -25,11 +25,11 @@ export class BsFormInput extends BsFormInputMixin(LitElement) {
                 name=${this.name}
                 .value=${this.value}
                 ?required=${this.required}
-                placeholder=${ifDefined(this.placeholder)}
+                ?placeholder=${this.placeholder}
                 ?disabled=${this.disabled} />
         `;
     }
-    
+
     getInputValue() {
         const inputElement = this.shadowRoot.querySelector('input');
         return inputElement.value;

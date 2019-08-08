@@ -3,13 +3,14 @@ import { LitElement, html, css } from 'lit-element';
 import { BsContentRebootCss } from '../../content';
 
 export class BsFormFileInput extends LitElement {
-    
+
     static get properties() {
         return {
-            placeholder: {type: String, reflect: true}
+            placeholder: {type: String, reflect: true},
+            multiple: {type: Boolean, reflect: true},
         };
     }
-    
+
     static get styles() {
         return [
             BsContentRebootCss,
@@ -21,21 +22,23 @@ export class BsFormFileInput extends LitElement {
             `
         ];
     }
-    
+
     render() {
         return html`
             <input 
                 type="file"
                 class="form-control-file"
-                .placeholder=${this.placeholder} />
+                .placeholder=${this.placeholder}
+                ?multiple=${this.multiple}
+                 />
         `;
     }
-    
+
     constructor() {
         super();
         this.placeholder = '';
     }
-    
+
     setFocus() {
         const inputElement = this.shadowRoot.querySelector('input');
         inputElement.focus();

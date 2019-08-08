@@ -25,7 +25,7 @@ import { BsButtonLargeCss } from './css/bs-button-large-css';
 import { BsButtonSmallCss } from './css/bs-button-small-css';
 
 export class BsButton extends BsButtonMixin(LitElement) {
-    
+
     static get styles() {
         return [
             BsContentRebootCss,
@@ -53,10 +53,10 @@ export class BsButton extends BsButtonMixin(LitElement) {
             BsButtonSmallCss
         ];
     }
-    
+
     render() {
         return html`
-            <button class="btn">
+            <button class="btn" style="width: 100%">
                 <slot></slot>
             </button>
         `;

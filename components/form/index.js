@@ -18,3 +18,4 @@ export { BsFormCheckboxInput } from './bs-form-checkbox-input';
 export { BsFormCheckLabel } from './bs-form-check-label';
 export { BsFormCheckGroup } from './bs-form-check-group';
 export { BsFormTextarea } from './bs-form-textarea';
+export { BsFormDateTime } from './bs-form-datetime';

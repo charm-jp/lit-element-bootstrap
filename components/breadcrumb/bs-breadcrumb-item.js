@@ -3,7 +3,7 @@ import { LitElement, html, css } from 'lit-element';
 import { BsContentRebootCss } from '../../content/bs-content-reboot-css';
 
 export class BsBreadcrumbItem extends LitElement {
-    
+
     static get properties() {
         return {
             title: String,
@@ -11,7 +11,7 @@ export class BsBreadcrumbItem extends LitElement {
             active: Boolean
         };
     }
-    
+
     static get styles() {
         return [
             BsContentRebootCss,
@@ -34,26 +34,25 @@ export class BsBreadcrumbItem extends LitElement {
             `
         ];
     }
-    
+
     render() {
         return html`
             ${this._selectTemplateToLoad()}
         `;
     }
-    
+
     constructor() {
         super();
-        this.href = '#';
+        this.href = 'javascript:';
         this.active = false;
-        this.title = '';
     }
-    
+
     _selectTemplateToLoad() {
-        
+
         if(this.active) {
-            return html`${this.title}`;
+            return html`<slot></slot>`;
         } else {
-            return html`<a href="${this.href}">${this.title}</a>`;
+            return html`<a href="${this.href}"><slot></slot></a>`;
         }
     }
 };
